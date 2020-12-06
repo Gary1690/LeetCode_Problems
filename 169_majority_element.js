@@ -35,10 +35,10 @@ var majorityElement = function(nums) {
       object[nums[i]]++
   }
   let max = ""
-  let repetion = 0
+  let repetition = 0
   for (const property in object) {
-      if(object[property ] > repetion){
-          repetion  = object[property ] 
+      if(object[property ] > repetition){
+          repetition  = object[property ] 
           max = property
       }
   }
