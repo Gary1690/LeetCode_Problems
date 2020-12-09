@@ -46,20 +46,25 @@
  */
 var canMakePaliQueries = function(s, queries) {
   const result = []
-  
   for(const query of queries){
       const subs = s.substring(query[0],query[1]+1)
       const k = query[2]
-      const dic = {}
-      for(let i = 0; i < subs.length; i++){
-          if(dic[subs[i]]){
-              delete(dic[subs[i]])
-          }else{
-              dic[subs[i]] = true
-          }
-      }
-      const oddRepitedLetters = Object.keys(dic).length
-      result.push(Math.floor(oddRepitedLetters /2) <= k)
+      result.push(check(subs,k))
   }
   return result 
 };
+
+const check = (subs,k)=>{
+  if(k >= 13) return true
+
+  const dic = {}
+  for(let i = 0; i < subs.length; i++){
+      if(dic[subs[i]]){
+          delete(dic[subs[i]])
+      }else{
+          dic[subs[i]] = true
+      }
+  }
+  const oddRepitedLetters = Object.keys(dic).length
+  return Math.floor(oddRepitedLetters /2) <= k
+}
