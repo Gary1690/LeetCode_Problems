@@ -40,17 +40,29 @@
  */
 
 var groupAnagrams = function(strs) {
+  //javascript object to group anagrams
   const anagramsByGroup = {}
+  //iterating over each word of the input array
   for(const str of strs){
+      //create the javascript object  key by sorting the words letters
+      //the words "ate", "eat" and "tea"  produce the same key "aet" 
+      //this key let us see if their are other words that are its anagrams 
+      //to add the current word to it   
       const sortedLetters = sortLetters(str)
+      //if the  key produce by sorting the words letters doesnt exist  
+      //it is initialize with an empty array 
       if(!anagramsByGroup[sortedLetters]){
           anagramsByGroup[sortedLetters] = []
       }
+      //we push the word into the array for the corresponding key 
       anagramsByGroup[sortedLetters].push(str)
   }
+  //finally we return an array with all the sorted anagrams 
   return Object.values(anagramsByGroup)
 };
 
+//helper function to sort the letters in a word or phrase
 const sortLetters = (str) =>{
   return str.split('').sort().join('')
 }
+
